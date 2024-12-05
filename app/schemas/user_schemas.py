@@ -32,6 +32,7 @@ class UserBase(BaseModel):
     profile_picture_url: Optional[str] = Field(None, example="https://example.com/profiles/john.jpg")
     linkedin_profile_url: Optional[str] =Field(None, example="https://linkedin.com/in/johndoe")
     github_profile_url: Optional[str] = Field(None, example="https://github.com/johndoe")
+    username: str = Field(..., max_length=255, example="johndoe15")
 
     # Corrected field_validator usage
     @field_validator('profile_picture_url', 'linkedin_profile_url', 'github_profile_url', mode='before')

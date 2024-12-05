@@ -38,13 +38,13 @@ class Settings(BaseSettings):
     # Email settings for Mailtrap
     smtp_server: str = Field(default='smtp.mailtrap.io', description="SMTP server for sending emails")
     smtp_port: int = Field(default=2525, description="SMTP port for sending emails")
-    smtp_username: str = Field(default='your-mailtrap-username', description="Username for SMTP server")
-    smtp_password: str = Field(default='your-mailtrap-password', description="Password for SMTP server")
+    smtp_username: str = Field(default='user', description="Username for SMTP server")
+    smtp_password: str = Field(default='password', description="Password for SMTP server")
 
 
     class Config:
         # If your .env file is not in the root directory, adjust the path accordingly.
-        env_file = ".env"
+        env_file = "../.env.sample"
         env_file_encoding = 'utf-8'
 
 # Instantiate settings to be imported in your application

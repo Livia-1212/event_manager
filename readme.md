@@ -9,6 +9,7 @@ This document details the progress made on the project, highlights resolved and 
 **Closed Issues**: 
 1. [Issue#1](https://github.com/Livia-1212/event_manager/issues/1)
 3. [Issue#3](https://github.com/Livia-1212/event_manager/issues/3)
+4. [Issue#4](https://github.com/Livia-1212/event_manager/issues/4)
 
 **Dockerhub Image**: Dockerhub Image
 

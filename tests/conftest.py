@@ -225,10 +225,10 @@ def user_base_data():
     }
 
 @pytest.fixture
-def user_base_data():
+def user_base_data_invalid():
     return {
         "username": "john_doe_123",
-        "email": "john.doe@example.com",
+        "email": "john.doe.example.com",
         "full_name": "John Doe",
         "nickname": "johnjohn",
         "bio": "I am a software engineer with over 5 years of experience.",

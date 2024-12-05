@@ -7,6 +7,7 @@ from app.models.user_model import User
 
 class EmailService:
     def __init__(self, template_manager: TemplateManager):
+        print(f'Settings attr:{settings}')
         self.smtp_client = SMTPClient(
             server=settings.smtp_server,
             port=settings.smtp_port,

@@ -201,7 +201,7 @@ async def register(user_data: UserCreate, session: AsyncSession = Depends(get_db
 async def login(form_data: OAuth2PasswordRequestForm = Depends(), session: AsyncSession = Depends(get_db)):
     if await UserService.is_account_locked(session, form_data.username):
         raise HTTPException(status_code=400, detail="Account locked due to too many failed login attempts.")
-
+    print(f"Form Username: {form_data.username} Form PW: {form_data.password}")
     user = await UserService.login_user(session, form_data.username, form_data.password)
     if user:
         access_token_expires = timedelta(minutes=settings.access_token_expire_minutes)

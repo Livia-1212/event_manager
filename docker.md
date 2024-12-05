@@ -36,6 +36,9 @@ This guide will walk you through the process of using Docker Compose to manage a
   - **`docker-compose exec fastapi alembic upgrade head`**
   - This command runs the Alembic upgrade command to apply migrations to your PostgreSQL database.
 
+- Auto updating migrations into database within the Fastapi container:
+ - **`docker compose exec fastapi alembic revision --autogenerate -m "<message>" `**
+
 ### Running Tests with Pytest
 - To run tests inside the FastAPI container, ensuring they interact with the PostgreSQL service:
   - **`docker-compose exec fastapi pytest`**

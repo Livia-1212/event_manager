@@ -34,9 +34,3 @@ This project reinforced the importance of version control and GitHub issue track
 
 Moreover, I kept setting up Dockerized environments for PostgreSQL and FastAPI, which was one of the most benefiting experience from this class that I've learnt for managing dependencies and ensuring the reproducibility of the project across different systems. While Docker simplified deployment, debugging services running in containers introduced additional complexity, such as verifying inter-service communication in docker-compose.
 
-**Remaining Issues**
->Despite extensive efforts, a few issues remain unresolved:
->1. Certain tests for the email service and user APIs fail due to subtle configuration mismatches in fixtures or dependency injection.
->2. Failed SMTPServerDisconnected error persists: 'smtplib.SMTPServerDisconnected: Connection unexpectedly closed'
-
-Moving forward, I plan to investigate alternative testing strategies, refine dependency management, and explore advanced database schema handling techniques.

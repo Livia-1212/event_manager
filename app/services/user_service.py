@@ -119,6 +119,7 @@ class UserService:
     @classmethod
     async def login_user(cls, session: AsyncSession, email: str, password: str) -> Optional[User]:
         user = await cls.get_by_email(session, email)
+        print(f'User in login_user: {user}')
         if user:
             if user.email_verified is False:
                 return None

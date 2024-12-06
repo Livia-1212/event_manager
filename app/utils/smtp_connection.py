@@ -22,14 +22,14 @@ class SMTPClient:
             message.attach(MIMEText(html_content, 'html'))
 
             with smtplib.SMTP(self.server, self.port) as server:
-                server.starttls()  # Use TLS
-                print(f"Username: {self.username}")
-                print(f"Password': {self.password}")
-                print(f"HTML CONTENT: {html_content}")
-                print(f"Message: {message.as_string()}")
-                      
+                server.ehlo()
+                server.starttls()  # Use TLS     
+                server.ehlo()
+                print(f'Usernme, PW, server, port: {self.username}, {self.password}, {self.server}, {self.port}') 
                 server.login(self.username, self.password)
+                server.ehlo()
                 server.sendmail(self.username, recipient, message.as_string())
+                server.close()
             logging.info(f"Email sent to {recipient}")
         except Exception as e:
             logging.error(f"Failed to send email: {str(e)}")

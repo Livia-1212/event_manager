@@ -1,7 +1,12 @@
 from builtins import bool, int, str
 from pathlib import Path
 from pydantic import  Field, AnyUrl, DirectoryPath
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
+import os
+from dotenv import find_dotenv, load_dotenv
+
+load_dotenv(find_dotenv(".env"))
+
 
 class Settings(BaseSettings):
     max_login_attempts: int = Field(default=3, description="Background color of QR codes")
@@ -42,10 +47,11 @@ class Settings(BaseSettings):
     smtp_password: str = Field(default='password', description="Password for SMTP server")
 
 
-    class Config:
-        # If your .env file is not in the root directory, adjust the path accordingly.
-        env_file = ".env"
-        env_file_encoding = 'utf-8'
+    env_config: dict = SettingsConfigDict(case_sensitive=True)
+    # class Config:
+    #     # If your .env file is not in the root directory, adjust the path accordingly.
+    #     env_file = "../.env.sample"
+    #     env_file_encoding = 'utf-8'
 
 # Instantiate settings to be imported in your application
 settings = Settings()

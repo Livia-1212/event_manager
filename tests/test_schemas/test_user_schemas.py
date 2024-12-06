@@ -31,7 +31,7 @@ def test_user_response_valid(user_response_data):
 # Tests for LoginRequest
 def test_login_request_valid(login_request_data):
     login = LoginRequest(**login_request_data)
-    assert login.email == login_request_data["email"]
+    assert login.username == login_request_data["username"]
     assert login.password == login_request_data["password"]
 
 # Parametrized tests for nickname and email validation
@@ -64,6 +64,6 @@ def test_user_base_url_invalid(url, user_base_data):
 def test_user_base_invalid_email(user_base_data_invalid):
     with pytest.raises(ValidationError) as exc_info:
         user = UserBase(**user_base_data_invalid)
-    
+    print(f'Exception info from test user base invalid email: {str(exc_info.value)}')
     assert "value is not a valid email address" in str(exc_info.value)
     assert "john.doe.example.com" in str(exc_info.value)

@@ -20,7 +20,7 @@ This document details the progress made on the project, highlights resolved and 
 
 
 ## Test Coverage screenshot
-![TestCov](http://url/to/img.png)
+![TestCov](https://github.com/Livia-1212/event_manager/blob/main/Test.png)
 
 ## Reflections
 

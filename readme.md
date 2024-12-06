@@ -19,6 +19,9 @@ This document details the progress made on the project, highlights resolved and 
 [docker.io/livia1212/event_manager:latest](https://hub.docker.com/layers/livia1212/event_manager/latest/images/sha256:a72a0a1c819f1e62d9a7c1474c438bef19c056aac2d8c0bc291b7ae41025fda3?uuid=87b8b892-996c-4383-9c60-54e1a6ba8057%0A)
 
 
+## Test Coverage screenshot
+![TestCov](http://url/to/img.png)
+
 ## Reflections
 
 **Technical Challenges**

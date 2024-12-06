@@ -48,6 +48,10 @@ class UserService:
     @classmethod
     async def get_by_email(cls, session: AsyncSession, email: str) -> Optional[User]:
         return await cls._fetch_user(session, email=email)
+    
+    @classmethod
+    async def get_by_username(cls, session: AsyncSession, username: str) -> Optional[User]:
+        return await cls._fetch_user(session, username=username)
 
     @classmethod
     async def create(cls, session: AsyncSession, user_data: Dict[str, str], email_service: EmailService) -> Optional[User]:
@@ -117,9 +121,8 @@ class UserService:
     
 
     @classmethod
-    async def login_user(cls, session: AsyncSession, email: str, password: str) -> Optional[User]:
-        user = await cls.get_by_email(session, email)
-        print(f'User in login_user: {user}')
+    async def login_user(cls, session: AsyncSession, username: str, password: str) -> Optional[User]:
+        user = await cls.get_by_username(session, username)
         if user:
             if user.email_verified is False:
                 return None

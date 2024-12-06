@@ -8,12 +8,15 @@ This document details the progress made on the project, highlights resolved and 
 ## Github Links
 **Closed Issues**: 
 1. [Issue#1](https://github.com/Livia-1212/event_manager/issues/1)
+2. [Issue#2](https://github.com/Livia-1212/event_manager/issues/2)
 3. [Issue#3](https://github.com/Livia-1212/event_manager/issues/3)
 4. [Issue#4](https://github.com/Livia-1212/event_manager/issues/4)
 5. [Issue#5](https://github.com/Livia-1212/event_manager/issues/12)
 6. [Issue#6](https://github.com/Livia-1212/event_manager/issues/9)
+7. [Issue#7](https://github.com/Livia-1212/event_manager/issues/5)
 
-**Dockerhub Image**: Dockerhub Image
+**Dockerhub Image**: 
+[docker.io/livia1212/event_manager:latest](https://hub.docker.com/layers/livia1212/event_manager/latest/images/sha256:a72a0a1c819f1e62d9a7c1474c438bef19c056aac2d8c0bc291b7ae41025fda3?uuid=87b8b892-996c-4383-9c60-54e1a6ba8057%0A)
 
 
 ## Reflections

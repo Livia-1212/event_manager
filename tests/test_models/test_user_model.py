@@ -135,7 +135,7 @@ async def test_default_role_assignment(db_session: AsyncSession):
     """
     Tests that a user without a specified role defaults to 'anonymous' or the expected default role.
     """
-    user = User(nickname="noob", email="newuser@example.com", hashed_password="hashed_password")
+    user = User(nickname="noob", email="newuser@example.com", hashed_password="hashed_password",username="harpersmiling")
     db_session.add(user)
     await db_session.commit()
     await db_session.refresh(user)

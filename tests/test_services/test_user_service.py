@@ -12,6 +12,7 @@ async def test_create_user_with_valid_data(db_session, email_service):
     user_data = {
         "email": "valid_user@example.com",
         "password": "ValidPassword123!",
+        "username": "soeassssssy"
     }
     user = await UserService.create(db_session, user_data, email_service)
     assert user is not None
@@ -61,7 +62,7 @@ async def test_get_by_email_user_does_not_exist(db_session):
 # Test updating a user with valid data
 async def test_update_user_valid_data(db_session, user):
     new_email = "updated_email@example.com"
-    updated_user = await UserService.update(db_session, user.id, {"email": new_email})
+    updated_user = await UserService.update(db_session, user.id, {"email": new_email,"username":"bullshit"})
     assert updated_user is not None
     assert updated_user.email == new_email
 
@@ -94,6 +95,7 @@ async def test_register_user_with_valid_data(db_session, email_service):
     user_data = {
         "email": "register_valid_user@example.com",
         "password": "RegisterValid123!",
+        "username": "ValidUser156@"
     }
     user = await UserService.register_user(db_session, user_data, email_service)
     assert user is not None
@@ -113,8 +115,9 @@ async def test_login_user_successful(db_session, verified_user):
     user_data = {
         "email": verified_user.email,
         "password": "MySuperPassword$1234",
+        "username": verified_user.username
     }
-    logged_in_user = await UserService.login_user(db_session, user_data["email"], user_data["password"])
+    logged_in_user = await UserService.login_user(db_session, user_data["username"], user_data["password"])
     assert logged_in_user is not None
 
 # Test user login with incorrect email
@@ -130,6 +133,7 @@ async def test_login_user_incorrect_password(db_session, user):
 # Test account lock after maximum failed login attempts
 async def test_account_lock_after_failed_logins(db_session, verified_user):
     max_login_attempts = get_settings().max_login_attempts
+    print(f'Max attemp:{max_login_attempts}')
     for _ in range(max_login_attempts):
         await UserService.login_user(db_session, verified_user.email, "wrongpassword")
     

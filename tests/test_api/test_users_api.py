@@ -66,6 +66,7 @@ async def test_create_user_duplicate_email(async_client, verified_user):
     user_data = {
         "email": verified_user.email,
         "password": "AnotherPassword123!",
+        "username": "toogoodforu"
     }
     response = await async_client.post("/register/", json=user_data)
     assert response.status_code == 400
@@ -88,7 +89,7 @@ from urllib.parse import urlencode
 async def test_login_success(async_client, verified_user):
     # Attempt to login with the test user
     form_data = {
-        "username": verified_user.email,
+        "username": verified_user.username,
         "password": "MySuperPassword$1234"
     }
     response = await async_client.post("/login/", data=urlencode(form_data), headers={"Content-Type": "application/x-www-form-urlencoded"})

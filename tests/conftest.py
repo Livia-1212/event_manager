@@ -104,6 +104,7 @@ async def locked_user(db_session):
         "email_verified": False,
         "is_locked": True,
         "failed_login_attempts": settings.max_login_attempts,
+        "username":fake.name()
     }
     user = User(**user_data)
     db_session.add(user)
@@ -121,6 +122,7 @@ async def user(db_session):
         "role": UserRole.AUTHENTICATED,
         "email_verified": False,
         "is_locked": False,
+        "username": fake.name()
     }
     user = User(**user_data)
     db_session.add(user)
@@ -138,6 +140,7 @@ async def verified_user(db_session):
         "role": UserRole.AUTHENTICATED,
         "email_verified": True,
         "is_locked": False,
+        "username": fake.name()
     }
     user = User(**user_data)
     db_session.add(user)
@@ -174,6 +177,7 @@ async def users_with_same_role_50_users(db_session):
             "role": UserRole.AUTHENTICATED,
             "email_verified": False,
             "is_locked": False,
+            "username": fake.name()
         }
         user = User(**user_data)
         db_session.add(user)
@@ -191,6 +195,7 @@ async def admin_user(db_session: AsyncSession):
         hashed_password="securepassword",
         role=UserRole.ADMIN,
         is_locked=False,
+        username="liviatwat"
     )
     db_session.add(user)
     await db_session.commit()
@@ -243,6 +248,7 @@ def user_create_data(user_base_data):
 @pytest.fixture
 def user_update_data():
     return {
+        "username":"smb",
         "email": "john.doe.new@example.com",
         "full_name": "John H. Doe",
         "first_name": "John",
@@ -262,6 +268,7 @@ def user_response_data():
         "created_at": datetime.now(),
         "updated_at": datetime.now(),
         "last_login_at": datetime.now(),
+        "username":"whateverrrrrrr"
     }
 
 @pytest.fixture
@@ -281,6 +288,21 @@ async def admin_token(admin_user):
     """
     token_data = {"sub": str(admin_user.id), "role": "ADMIN"}
     return create_access_token(data=token_data)
+
+
+
+@pytest.fixture
+async def test_user(db_session):
+    user = User(
+        id=uuid.uuid4(),
+        email="testuser@example.com",
+        username="test_user_123",
+        nickname="quick_fox_123",
+        hashed_password="hashed_password_example",
+    )
+    db_session.add(user)
+    await db_session.commit()
+    return user
 
 @pytest.fixture
 async def manager_token(manager_user):

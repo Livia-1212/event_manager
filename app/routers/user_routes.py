@@ -37,7 +37,7 @@ router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 settings = get_settings()
 @router.get("/users/{user_id}", response_model=UserResponse, name="get_user", tags=["User Management Requires (Admin or Manager Roles)"])
-async def get_user(user_id: UUID, request: Request, db: AsyncSession = Depends(get_db), token: str = Depends(oauth2_scheme), current_user: dict = Depends(require_role(["ADMIN", "MANAGER"]))):
+async def get_user(user_id: UUID, request: Request, db: AsyncSession = Depends(get_db), token: str = Depends(oauth2_scheme), current_user: dict = Depends(require_role(["ADMIN", "MANAGER", "AUTHENTICATED"]))):
     """
     Endpoint to fetch a user by their unique identifier (UUID).
 
@@ -201,7 +201,6 @@ async def register(user_data: UserCreate, session: AsyncSession = Depends(get_db
 async def login(form_data: OAuth2PasswordRequestForm = Depends(), session: AsyncSession = Depends(get_db)):
     if await UserService.is_account_locked(session, form_data.username):
         raise HTTPException(status_code=400, detail="Account locked due to too many failed login attempts.")
-    print(f"Form Username: {form_data.username} Form PW: {form_data.password}")
     user = await UserService.login_user(session, form_data.username, form_data.password)
     if user:
         access_token_expires = timedelta(minutes=settings.access_token_expire_minutes)
